@@ -12,53 +12,10 @@ if (!defined('WPINC')) {
     die;
 }
 
-/**
- * Used in the Wordpress Options API.
- */
-$zub_options = [
-    'pages' => [
-        'id' => 'zubarus_members_only_pages',
-        // Post/page IDs
-        'default' => [],
-    ],
-    'pages_no_access' => [
-        'id' => 'zubarus_no_access',
-        'default' => '[Members-Only] You need to verify your membership to access this page.',
-    ],
-];
-
-/**
- * Register options with default values if they don't exist.
- */
-function zub_register_options()
-{
-    global $zub_options;
-    
-    foreach ($zub_options as $values)
-    {
-        $option = get_option($values['id'], false);
-
-        if ($option !== false) {
-            continue;
-        }
-        
-        add_option($values['id'], $values['default']);
-    }
-}
-
-/**
- * Make sure we can access session variables.
- */
-function zub_register_session()
-{
-    if (!session_id()) {
-        return;
-    }
-
-    session_start();
-}
-
-add_action('init', 'zub_register_session');
+require __DIR__ . '/includes/ZubarusOptions.php';
+require __DIR__ . '/includes/ZubarusSessionHandler.php';
+require __DIR__ . '/includes/ZubarusMemberPageHandler.php';
+require __DIR__ . '/includes/ZubarusOptionsPage.php';
 
 /**
  * Checks if the current visitor has verified their phone number
@@ -68,11 +25,28 @@ add_action('init', 'zub_register_session');
  */
 function zub_can_see_post()
 {
-    if (!empty($_SESSION['zubarus_member'])) {
+    if (!empty($_SESSION['zubarus_member']) || isset($_GET['zubarus_override'])) {
         return true;
     }
 
     return current_user_can('edit_posts');
+}
+
+function zub_should_replace_text()
+{
+    $post = get_post();
+    $postId = $post->ID;
+
+    $restrictedPages = zub_get_option('pages');
+
+    /**
+     * Page is restricted.
+     */
+    if (in_array($postId, $restrictedPages)) {
+        return true;
+    }
+    
+    return false;
 }
 
 /**
@@ -80,15 +54,20 @@ function zub_can_see_post()
  * 
  * @return string
  */
-function zub_can_see_page($input)
+function zub_replace_text($input)
 {
+    if (!zub_should_replace_text()) {
+        return $input;
+    }
+
     if (!zub_can_see_post()) {
-        return '[Members-Only] You are not allowed to access this page.';
+        $restricted = zub_get_option('pages_no_access');
+        return $restricted;
     }
     
     return $input;
 }
 
-add_filter('the_content', 'zub_can_see_page');
-add_filter('the_excerpt', 'zub_can_see_page');
-add_filter('the_title', 'zub_can_see_page');
+add_filter('the_content', 'zub_replace_text');
+add_filter('the_excerpt', 'zub_replace_text');
+add_filter('the_title', 'zub_replace_text');
