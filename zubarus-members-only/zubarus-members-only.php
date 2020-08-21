@@ -14,10 +14,34 @@ if (!defined('WPINC')) {
     die;
 }
 
-require __DIR__ . '/includes/ZubarusOptions.php';
-require __DIR__ . '/includes/ZubarusSessionHandler.php';
-require __DIR__ . '/includes/ZubarusMemberPageHandler.php';
-require __DIR__ . '/includes/ZubarusOptionsPage.php';
+/**
+ * Zubarus Includes
+ */
+define('__ZUBINC', __DIR__ . '/includes');
+require __ZUBINC . '/ZubarusOptions.php';
+require __ZUBINC . '/ZubarusSessionHandler.php';
+require __ZUBINC . '/ZubarusMemberPageHandler.php';
+require __ZUBINC . '/ZubarusOptionsPage.php';
+
+// /**
+//  * Debugging-only
+//  */
+// function zub_debug_check_restrict()
+// {
+//     if (!defined('WP_DEBUG') || WP_DEBUG !== true || !current_user_can('edit_posts')) {
+//         return;
+//     }
+
+//     if (isset($_GET['zub_del_post_id'])) {
+//         zub_del_restricted_page($_GET['zub_del_post_id']);
+//     }
+
+//     if (isset($_GET['zub_add_post_id'])) {
+//         zub_add_restricted_page($_GET['zub_add_post_id']);
+//     }
+// }
+
+// add_action('init', 'zub_debug_check_restrict', 1000);
 
 /**
  * Checks if the current visitor has verified their phone number
@@ -27,7 +51,7 @@ require __DIR__ . '/includes/ZubarusOptionsPage.php';
  */
 function zub_can_see_post()
 {
-    // Allow debugging when `WP_DEBUG` is enabled.
+    // Allow debugging when `WP_DEBUG` is enabled, but only then.
     $allowOverride = defined('WP_DEBUG') && WP_DEBUG === true;
     $shouldOverride = $allowOverride && isset($_GET['zubarus_override']);
 
@@ -54,14 +78,14 @@ function zub_should_replace_text()
     if (in_array($postId, $restrictedPages)) {
         return true;
     }
-    
+
     return false;
 }
 
 /**
  * Replaces the page information with a "Members only" string
  * for guests that haven't verified their membership.
- * 
+ *
  * @return string
  */
 function zub_replace_text($input)
@@ -74,9 +98,11 @@ function zub_replace_text($input)
         $restricted = zub_get_option('pages_no_access');
         return $restricted;
     }
-    
+
     return $input;
 }
+add_filter('the_content', 'zub_replace_text');
+add_filter('the_excerpt', 'zub_replace_text');
 
 /**
  * Load translations
@@ -85,9 +111,23 @@ function zub_members_only_load_plugin_textdomain()
 {
     load_plugin_textdomain('zubarus-members-only', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
-
 add_action('plugins_loaded', 'zub_members_only_load_plugin_textdomain');
 
-add_filter('the_content', 'zub_replace_text');
-add_filter('the_excerpt', 'zub_replace_text');
-add_filter('the_title', 'zub_replace_text');
+/**
+ * Plugin uninstallation
+ * Delete all options from database
+ *
+ * This only happens when the plugin is DELETED
+ * not when it's just deactivated.
+ */
+function zub_delete_plugin_handler()
+{
+    $options = ZubarusOptions::getDefaultOptions();
+
+    foreach ($options as $option)
+    {
+        $name = $option['name'];
+        delete_option($name);
+    }
+}
+register_uninstall_hook(__FILE__, 'zub_delete_plugin_handler');

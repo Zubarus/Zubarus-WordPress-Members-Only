@@ -43,6 +43,4 @@ msgstr "Melding som skal vises på begrensede sider (til gjester)."
 
 # Default message to display to guests that a page is restricted.
 msgid "[Members Only] You need to verify your membership to access this page."
-msgstr ""
-"[For Medlemmer] Du må verifisere ditt medlemskap for å ha tilgang til denne "
-"siden."
+msgstr "[For Medlemmer] Du må verifisere ditt medlemskap for å ha tilgang til denne siden."

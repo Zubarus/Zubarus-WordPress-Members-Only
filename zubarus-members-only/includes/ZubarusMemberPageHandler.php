@@ -7,7 +7,7 @@ if (!defined('WPINC')) {
 /**
  * Helper function for options API to add
  * a post (via ID) to 'restricted pages'
- * 
+ *
  * If a post that is already restricted
  * is provided, no changes occur.
  */
@@ -29,7 +29,7 @@ function zub_add_restricted_page($postId)
 /**
  * Helper function for options API to remove
  * a post (via ID) from 'restricted pages'
- * 
+ *
  * If a post that is not already restricted
  * is provided, no changes occur.
  */

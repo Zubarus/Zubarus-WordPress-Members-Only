@@ -51,7 +51,7 @@ function zub_register_options_page()
         'type' => 'string',
     ]);
 
-    add_settings_section('members-only-message', __('Settings'), 'zub_members_only_text', 'zubarus_members_only');
+    add_settings_section('zubarus-members-only-message', __('Settings'), 'zub_members_only_text', 'zubarus_members_only');
     add_settings_field('zubarus_members_only_restricted_message', __('Message to display on restricted pages.', 'zubarus-members-only'), 'zub_members_only_option_restricted', 'zubarus_members_only', 'members-only-message');
 }
 add_action('admin_init', 'zub_register_options_page');

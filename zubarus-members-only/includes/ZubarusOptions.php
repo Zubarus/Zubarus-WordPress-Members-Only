@@ -7,13 +7,13 @@ if (!defined('WPINC')) {
 class ZubarusOptions
 {
     /**
-     * Mapping of alias to wp_options ID/name.
+     * Mapping of internal name/alias to wp_options ID/name.
      *
      * @var array
      */
     private static $optionNames = [
         'pages' => 'zubarus_members_only_pages',
-        'pages_no_access' => 'zubarus_no_access'
+        'pages_no_access' => 'zubarus_no_access',
     ];
 
     /**
@@ -51,7 +51,6 @@ class ZubarusOptions
             $options[$alias]['id'] = $names[$alias];
             $options[$alias]['name'] = $names[$alias];
 
-            
             /**
              * Make sure to localize default values.
              */
@@ -98,9 +97,9 @@ function zub_register_options()
 /**
  * Get option from options API based on internal name.
  *
- * @param string $name
+ * @param string $name Internal name/alias for the option.
  *
- * @return mixed Option value
+ * @return mixed The value saved for the option.
  */
 function zub_get_option($name)
 {
@@ -112,7 +111,7 @@ function zub_get_option($name)
 /**
  * Update options via options API based on internal name.
  *
- * @param string $name
+ * @param string $name Internal name/alias for the option.
  * @param mixed $newOptions
  *
  * @return bool Success status based on WP Core's `update_option()`
