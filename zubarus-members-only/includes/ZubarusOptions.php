@@ -27,7 +27,10 @@ class ZubarusOptions
             'default' => [],
         ],
         'pages_no_access' => [
-            'default' => '[Members-Only] You need to verify your membership to access this page.',
+            /**
+             * Translation is handled via getDefaultOptions().
+             */
+            'default' => '[Members Only] You need to verify your membership to access this page.',
         ],
     ];
 
@@ -47,6 +50,15 @@ class ZubarusOptions
         array_map(function($alias) use ($names, &$options) {
             $options[$alias]['id'] = $names[$alias];
             $options[$alias]['name'] = $names[$alias];
+
+            
+            /**
+             * Make sure to localize default values.
+             */
+            $defaultValue = $options[$alias]['default'];
+            if (gettype($defaultValue) === 'string') {
+                $options[$alias]['default'] = __($defaultValue, 'zubarus-members-only');
+            }
         }, array_keys($options));
 
         return $options;
@@ -64,9 +76,6 @@ class ZubarusOptions
 function zub_register_options()
 {
     $zub_options = ZubarusOptions::getDefaultOptions();
-
-    error_log(print_r($zub_options, true));
-
     foreach ($zub_options as $values) {
         $option = get_option($values['id'], false);
 
@@ -86,6 +95,13 @@ function zub_register_options()
     }
 }
 
+/**
+ * Get option from options API based on internal name.
+ *
+ * @param string $name
+ *
+ * @return mixed Option value
+ */
 function zub_get_option($name)
 {
     $options = ZubarusOptions::getDefaultOptions();
@@ -93,13 +109,20 @@ function zub_get_option($name)
     return get_option($option['id'], $option['default']);
 }
 
+/**
+ * Update options via options API based on internal name.
+ *
+ * @param string $name
+ * @param mixed $newOptions
+ *
+ * @return bool Success status based on WP Core's `update_option()`
+ */
 function zub_update_option($name, $newOptions)
 {
     $oldOptions = zub_get_option($name);
     $optionNames = ZubarusOptions::getOptionNames();
 
     if (gettype($oldOptions) !== gettype($newOptions)) {
-
         error_log(sprintf('Type mismatch when updating option %s', $optionNames[$name]));
         return false;
     }

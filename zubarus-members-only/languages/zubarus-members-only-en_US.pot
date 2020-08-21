@@ -1,0 +1,46 @@
+# Copyright (C) 2020 Zubarus AS
+# This file is distributed under the same license as the Zubarus - Members Only plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Zubarus - Members Only 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
+"only\n"
+"POT-Creation-Date: 2020-08-21T08:00:53+00:00\n"
+"PO-Revision-Date: 2020-08-21 10:13+0200\n"
+"Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
+"Language-Team: \n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Domain: zubarus-members-only\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+msgid "Zubarus - Members Only"
+msgstr "Zubarus - Members Only"
+
+#. Description of the plugin
+msgid "Restrict access to pages & posts to members registered via Zubarus."
+msgstr "Restrict access to pages & posts to members registered via Zubarus."
+
+#. Author of the plugin
+msgid "Zubarus AS"
+msgstr "Zubarus AS"
+
+#. Author URI of the plugin
+msgid "https://zubarus.com/"
+msgstr "https://zubarus.com/"
+
+# Options page: Generic description of page
+msgid "Options related to the Zubarus - Members Only plugin."
+msgstr "Options related to the Zubarus - Members Only plugin."
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Message to display on restricted pages."
+msgstr "Message to display on restricted pages (to guests)."
+
+# Default message to display to guests that a page is restricted.
+msgid "[Members Only] You need to verify your membership to access this page."
+msgstr "[Members Only] You need to verify your membership to access this page."

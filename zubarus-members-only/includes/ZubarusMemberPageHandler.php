@@ -4,6 +4,13 @@ if (!defined('WPINC')) {
     die;
 }
 
+/**
+ * Helper function for options API to add
+ * a post (via ID) to 'restricted pages'
+ * 
+ * If a post that is already restricted
+ * is provided, no changes occur.
+ */
 function zub_add_restricted_page($postId)
 {
     $options = zub_get_option('pages');
@@ -19,6 +26,13 @@ function zub_add_restricted_page($postId)
     zub_update_option('pages', $options);
 }
 
+/**
+ * Helper function for options API to remove
+ * a post (via ID) from 'restricted pages'
+ * 
+ * If a post that is not already restricted
+ * is provided, no changes occur.
+ */
 function zub_del_restricted_page($postId)
 {
     $options = zub_get_option('pages');

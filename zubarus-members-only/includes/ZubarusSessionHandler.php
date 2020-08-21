@@ -23,6 +23,10 @@ function zub_check_debug_session()
     }
 }
 
+/**
+ * Verify if the session is still valid
+ * and refresh it if it is.
+ */
 function zub_check_if_valid_session()
 {
     if (empty($_SESSION['zubarus_member'])) {
@@ -48,6 +52,9 @@ function zub_check_if_valid_session()
     unset($_SESSION['zubarus_member']);
 }
 
+/**
+ * Start sessions
+ */
 function zub_register_session()
 {
     if (!session_id()) {
