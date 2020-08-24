@@ -3,10 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zubarus - Members Only 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
-"only\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-only\n"
 "POT-Creation-Date: 2020-08-21T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-21 11:04+0200\n"
+"PO-Revision-Date: 2020-08-24 09:11+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -39,7 +38,7 @@ msgstr "Innstillinger relatert til integrasjonen Zubarus - Medlemstilgang."
 
 # Options page: Description of the "restricted access message" customizable option.
 msgid "Message to display on restricted pages."
-msgstr "Melding som skal vises på begrensede sider (til gjester)."
+msgstr "Melding som skal vises på begrensede sider (til gjester)"
 
 # Default message to display to guests that a page is restricted.
 msgid "[Members Only] You need to verify your membership to access this page."

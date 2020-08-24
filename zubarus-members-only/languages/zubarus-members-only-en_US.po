@@ -6,16 +6,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
 "only\n"
 "POT-Creation-Date: 2020-08-21T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-24 09:10+0200\n"
-"Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
+"PO-Revision-Date: 2020-08-24 09:12+0200\n"
 "Language-Team: \n"
-"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
 "X-Domain: zubarus-members-only\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
+"Language: en_US\n"
 
 #. Plugin Name of the plugin
 msgid "Zubarus - Members Only"
@@ -35,7 +35,7 @@ msgstr "https://zubarus.com/"
 
 # Options page: Generic description of page
 msgid "Options related to the Zubarus - Members Only plugin."
-msgstr "Settings related to the Zubarus - Members Only plugin."
+msgstr "Options related to the Zubarus - Members Only plugin."
 
 # Options page: Description of the "restricted access message" customizable option.
 msgid "Message to display on restricted pages."
