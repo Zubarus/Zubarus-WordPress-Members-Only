@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Zubarus - Members Only 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
 "only\n"
-"POT-Creation-Date: 2020-08-21T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-24 09:10+0200\n"
+"POT-Creation-Date: 2020-08-24T08:00:53+00:00\n"
+"PO-Revision-Date: 2020-08-24 15:00+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -44,3 +44,40 @@ msgstr "Message to display on restricted pages (to guests)"
 # Default message to display to guests that a page is restricted.
 msgid "[Members Only] You need to verify your membership to access this page."
 msgstr "[Members Only] You need to verify your membership to access this page."
+
+#| msgid "Pages & posts that should be restricted to members only"
+msgid "Page that should be restricted to members"
+msgstr "Page that should be restricted to members"
+
+msgid "Add a new page that should be restricted to verified members only."
+msgstr "Add a new page that should be restricted to verified members only."
+
+#| msgid "Pages & posts that should be restricted to members only"
+msgid "Page that should be unrestricted and made public"
+msgstr "Page that should be unrestricted and made public"
+
+msgid ""
+"Remove a page from the list of restricted pages and make it available to the "
+"public."
+msgstr ""
+"Remove a page from the list of restricted pages and make it available to the "
+"public."
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Restricted pages &mdash; Add restricted page"
+msgstr "Restricted pages &mdash; Add restricted page"
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Restricted pages &mdash; Remove restricted page"
+msgstr "Restricted pages &mdash; Remove restricted page"
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Options related to restricted pages."
+msgstr "Options related to restricted pages."
+
+#~ msgid "Pages & posts that are already restricted to members"
+#~ msgstr "Pages & posts that are already restricted to members"
+
+# Options page: Restricted pages
+#~ msgid "Restricted pages"
+#~ msgstr "Restricted pages"

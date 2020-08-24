@@ -3,9 +3,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zubarus - Members Only 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-only\n"
-"POT-Creation-Date: 2020-08-21T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-24 09:11+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
+"only\n"
+"POT-Creation-Date: 2020-08-24T08:00:53+00:00\n"
+"PO-Revision-Date: 2020-08-24 15:00+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -42,4 +43,41 @@ msgstr "Melding som skal vises på begrensede sider (til gjester)"
 
 # Default message to display to guests that a page is restricted.
 msgid "[Members Only] You need to verify your membership to access this page."
-msgstr "[For Medlemmer] Du må verifisere ditt medlemskap for å ha tilgang til denne siden."
+msgstr ""
+"[For Medlemmer] Du må verifisere ditt medlemskap for å ha tilgang til denne "
+"siden."
+
+msgid "Page that should be restricted to members"
+msgstr "Side som skal begrenses til medlemmer"
+
+msgid "Add a new page that should be restricted to verified members only."
+msgstr "Legg til en side som skal være begrenset til bare medlemmer."
+
+msgid "Page that should be unrestricted and made public"
+msgstr "Side som skal gjøres tilgjengelig for offentligheten"
+
+msgid ""
+"Remove a page from the list of restricted pages and make it available to the "
+"public."
+msgstr ""
+"Fjern en side fra listen over begrensede sider og gjør den tilgjengelig for "
+"offentligheten."
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Restricted pages &mdash; Add restricted page"
+msgstr "Begrensede sider &mdash; Legg til en begrenset side"
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Restricted pages &mdash; Remove restricted page"
+msgstr "Begrensede sider &mdash; Fjern en begrenset side"
+
+# Options page: Description of the "restricted access message" customizable option.
+msgid "Options related to restricted pages."
+msgstr "Innstillinger relatert til begrensede sider."
+
+#~ msgid "Pages & posts that are already restricted to members"
+#~ msgstr "Sider som allerede er begrenset til medlemmer"
+
+# Options page: Restricted pages
+#~ msgid "Restricted pages"
+#~ msgstr "Begrensede sider"
