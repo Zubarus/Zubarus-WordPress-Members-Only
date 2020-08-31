@@ -68,3 +68,7 @@ msgstr "Restricted pages &mdash; Remove restricted page"
 # Options page: Restricted pages description
 msgid "Options related to restricted pages."
 msgstr "Options related to restricted pages."
+
+# Options page: Scheduled
+# The *default* translation for "Scheduled" on the admin/options page
+# has the plural form of "Scheduled" in Norwegian, so we provide our own here.
