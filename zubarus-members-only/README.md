@@ -4,7 +4,7 @@ The Zubarus - Members Only plugin for Wordpress allows you to restrict pages/pos
 
 Guests that have not verified their membership will only see a placeholder text, which can be edited via the Wordpress dashboard.
 
-**Important note**: Currently only the _content_ of the page is replaced with the placeholder text. The title of the page is untouched and will be displayed as normal to anyone.  
+**Important note**: Currently only the _content_ of the page is replaced with the placeholder text. The **title of the page** and the **header image** are not left as-is and will be displayed as normal to anyone (including guests).  
 Restricted pages are also shown as norml to users that are logged into Wordpress normally and have the permissions to edit any posts or pages (editors, administrators etc.).
 
 ## Requirements
