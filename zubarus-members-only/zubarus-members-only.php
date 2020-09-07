@@ -22,26 +22,33 @@ require __ZUBINC . '/ZubarusOptions.php';
 require __ZUBINC . '/ZubarusSessionHandler.php';
 require __ZUBINC . '/ZubarusMemberPageHandler.php';
 require __ZUBINC . '/ZubarusOptionsPage.php';
+require __ZUBINC . '/ZubarusApiHandler.php';
 
-// /**
-//  * Debugging-only
-//  */
-// function zub_debug_check_restrict()
-// {
-//     if (!defined('WP_DEBUG') || WP_DEBUG !== true || !current_user_can('edit_posts')) {
-//         return;
-//     }
+/**
+ * Debugging-only
+ */
+function zub_debug_check_restrict()
+{
+    if (!defined('WP_DEBUG') || WP_DEBUG !== true || !current_user_can('edit_posts')) {
+        return;
+    }
 
-//     if (isset($_GET['zub_del_post_id'])) {
-//         zub_del_restricted_page($_GET['zub_del_post_id']);
-//     }
+    if (empty($_GET['zub_phone'])) {
+        return;
+    }
 
-//     if (isset($_GET['zub_add_post_id'])) {
-//         zub_add_restricted_page($_GET['zub_add_post_id']);
-//     }
-// }
+    $phone = '47634677';
+    $api = new ZubarusApiHandler('api@abborlaget.no', 'zub123');
 
-// add_action('init', 'zub_debug_check_restrict', 1000);
+    if (empty($_GET['zub_pin'])) {
+        print_r($api->verifyPhoneNumber($phone));
+    }
+    else {
+        print_r($api->verifyPin($phone, $_GET['zub_pin']));
+    }
+}
+
+add_action('init', 'zub_debug_check_restrict', 1000);
 
 /**
  * Checks if the current visitor has verified their phone number

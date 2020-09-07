@@ -14,6 +14,8 @@ class ZubarusOptions
     private static $optionNames = [
         'pages' => 'zubarus_members_only_pages',
         'pages_no_access' => 'zubarus_no_access',
+        'api_username' => 'zubarus_api_username',
+        'api_password' => 'zubarus_api_password',
     ];
 
     /**
@@ -31,6 +33,12 @@ class ZubarusOptions
              * Translation is handled via getDefaultOptions().
              */
             'default' => '[Members Only] You need to verify your membership to access this page.',
+        ],
+        'api_username' => [
+            'default' => null,
+        ],
+        'api_password' => [
+            'default' => null,
         ],
     ];
 
@@ -55,7 +63,8 @@ class ZubarusOptions
              * Make sure to localize default values.
              */
             $defaultValue = $options[$alias]['default'];
-            if (gettype($defaultValue) === 'string') {
+            $type = gettype($defaultValue);
+            if (!empty($defaultValue) && $type === 'string') {
                 $options[$alias]['default'] = __($defaultValue, 'zubarus-members-only');
             }
         }, array_keys($options));
