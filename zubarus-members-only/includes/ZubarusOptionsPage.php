@@ -19,6 +19,7 @@ function zub_render_options_page()
         ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Save'); ?>" />
     </form>
+
     <hr style="margin-top: 2em;" />
     <form action="options.php" method="post">
         <?php
@@ -27,6 +28,7 @@ function zub_render_options_page()
         ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Add'); ?>" />
     </form>
+
     <hr style="margin-top: 2em;" />
     <form action="options.php" method="post">
         <?php
@@ -34,6 +36,15 @@ function zub_render_options_page()
         do_settings_sections('zubarus_members_only_del_restricted_page');
         ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Remove'); ?>" />
+    </form>
+
+    <hr style="margin-top: 2em;" />
+    <form action="options.php" method="post">
+        <?php
+        settings_fields('api_credentials');
+        do_settings_sections('zubarus_members_only_api_credentials');
+        ?>
+        <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Save'); ?>" />
     </form>
 <?php
 }
@@ -253,35 +264,212 @@ function zub_members_only_del_restricted_page()
 }
 
 /**
+ * Prints description for API credentials
+ */
+function zub_members_only_api_credentials_text()
+{
+    printf('<p>%s</p>', __('API credentials used to communicate with the Zubarus API. Required to use phone verification via Zubarus.', 'zubarus-members-only'));
+}
+
+/**
+ * Print API username field with pre-filled value.
+ */
+function zub_members_only_api_username()
+{
+    $names = ZubarusOptions::getOptionNames();
+    $apiUsername = zub_get_option('api_username');
+
+    echo sprintf('<input type="text" placeholder="api@example.com" id="zubarus_members_only_api_username" name="%s" value="%s" />', $names['api_username'], esc_attr($apiUsername));
+}
+
+/**
+ * Print API password field with a fake pre-filled value (for security reasons).
+ * The value is validated in `zub_members_only_api_password_sanitize()` before being saved.
+ */
+function zub_members_only_api_password()
+{
+    $names = ZubarusOptions::getOptionNames();
+
+    echo sprintf('<input type="password" placeholder="********" id="zubarus_members_only_api_password" name="%s" value="        " />', $names['api_password']);
+}
+
+/**
+ * Checks if the new password is non-empty (e.g. bunch of spaces...)
+ * If it isn't, we save it as a new password.
+ *
+ * If it's "empty", then the old password stays.
+ *
+ * @param string $newPassword
+ *
+ * @return string
+ */
+function zub_members_only_api_password_sanitize($newPassword)
+{
+    if (empty(trim($newPassword))) {
+        /**
+         * If the "new password" is empty (after trimming spaces)
+         * we return the old API password.
+         */
+        return zub_get_option('api_password');
+    }
+
+    return $newPassword;
+}
+
+/**
  * Register options fields.
  */
 function zub_register_options_page()
 {
     $optionNames = ZubarusOptions::getOptionNames();
+    /**
+     * "Members-only" message
+     */
     register_setting($optionNames['pages_no_access'], $optionNames['pages_no_access']);
 
+    /**
+     * Restricted pages
+     */
     register_setting($optionNames['pages'], $optionNames['pages'], [
         'default' => $optionNames['pages'],
         'sanitize_callback' => 'zub_members_only_sanitize_restricted_pages',
     ]);
 
     /**
+     * API username
+     */
+    register_setting('api_credentials', $optionNames['api_username'], [
+        'default' => null,
+    ]);
+
+    /**
+     * API password
+     */
+    register_setting('api_credentials', $optionNames['api_password'], [
+        'default' => null,
+        'sanitize_callback' => 'zub_members_only_api_password_sanitize',
+    ]);
+
+    /**
      * Fields for updating "members-only" replacement text.
      */
-    add_settings_section('zubarus-members-only-message', __('Settings'), 'zub_members_only_text', 'zubarus_members_only_text');
-    add_settings_field('zubarus_members_only_restricted_message', __('Message to display on restricted pages.', 'zubarus-members-only'), 'zub_members_only_option_restricted', 'zubarus_members_only_text', 'zubarus-members-only-message');
+    add_settings_section(
+        // ID
+        'zubarus-members-only-message',
+        // Title
+        __('Settings'),
+        // Callback
+        'zub_members_only_text',
+        // Page
+        'zubarus_members_only_text'
+    );
+
+    add_settings_field(
+        // ID
+        'zubarus_members_only_restricted_message',
+        // Title
+        __('Message to display on restricted pages.', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_option_restricted',
+        // Page
+        'zubarus_members_only_text',
+        // Section
+        'zubarus-members-only-message'
+    );
 
     /**
      * Fields for adding a new restricted page.
      */
-    add_settings_section('zubarus-members-only-add-restricted-page', __('Restricted pages &mdash; Add restricted page', 'zubarus-members-only'), 'zub_members_only_add_restricted_page_text', 'zubarus_members_only_add_restricted_page');
-    add_settings_field('zubarus_members_only_add_restricted_page', __('Page that should be restricted to members', 'zubarus-members-only'), 'zub_members_only_add_restricted_page', 'zubarus_members_only_add_restricted_page', 'zubarus-members-only-add-restricted-page');
+    add_settings_section(
+        // ID
+        'zubarus-members-only-add-restricted-page',
+        // Title
+        __('Restricted pages &mdash; Add restricted page', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_add_restricted_page_text',
+        // Page
+        'zubarus_members_only_add_restricted_page'
+    );
+
+    add_settings_field(
+        // ID
+        'zubarus_members_only_add_restricted_page',
+        // Title
+        __('Page that should be restricted to members', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_add_restricted_page',
+        // Page
+        'zubarus_members_only_add_restricted_page',
+        // Section
+        'zubarus-members-only-add-restricted-page'
+    );
 
     /**
      * Fields for removing a restricted page.
      */
-    add_settings_section('zubarus-members-only-del-restricted-page', __('Restricted pages &mdash; Remove restricted page', 'zubarus-members-only'), 'zub_members_only_del_restricted_page_text', 'zubarus_members_only_del_restricted_page');
-    add_settings_field('zubarus_members_only_del_restricted_page', __('Page that should be unrestricted and made public', 'zubarus-members-only'), 'zub_members_only_del_restricted_page', 'zubarus_members_only_del_restricted_page', 'zubarus-members-only-del-restricted-page');
+    add_settings_section(
+        // ID
+        'zubarus-members-only-del-restricted-page',
+        // Title
+        __('Restricted pages &mdash; Remove restricted page', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_del_restricted_page_text',
+        // Page
+        'zubarus_members_only_del_restricted_page'
+    );
+
+    add_settings_field(
+        // ID
+        'zubarus_members_only_del_restricted_page',
+        // Title
+        __('Page that should be unrestricted and made public', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_del_restricted_page',
+        // Page
+        'zubarus_members_only_del_restricted_page',
+        // Section
+        'zubarus-members-only-del-restricted-page'
+    );
+
+    /**
+     * API username/password fields
+     */
+    add_settings_section(
+        // ID
+        'zubarus-members-only-api-credentials',
+        // Title
+        __('Zubarus API:', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_api_credentials_text',
+        // Page
+        'zubarus_members_only_api_credentials'
+    );
+
+    add_settings_field(
+        // ID
+        'zubarus_members_only_api_username',
+        // Title
+        __('API Username:', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_api_username',
+        // Page
+        'zubarus_members_only_api_credentials',
+        // Section
+        'zubarus-members-only-api-credentials'
+    );
+
+    add_settings_field(
+        // ID
+        'zubarus_members_only_api_password',
+        // Title
+        __('API Password:', 'zubarus-members-only'),
+        // Callback
+        'zub_members_only_api_password',
+        // Page
+        'zubarus_members_only_api_credentials',
+        // Section
+        'zubarus-members-only-api-credentials'
+    );
 }
 add_action('admin_init', 'zub_register_options_page');
 

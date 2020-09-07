@@ -68,3 +68,15 @@ msgstr "Restricted pages &mdash; Remove restricted page"
 # Options page: Restricted pages description
 msgid "Options related to restricted pages."
 msgstr "Options related to restricted pages."
+
+# Options page: API credentials description
+msgid "API credentials used to communicate with the Zubarus API. Required to use phone verification via Zubarus."
+msgstr "API credentials used to communicate with the Zubarus API. Required to use phone verification via Zubarus."
+
+# Options page: API username field
+msgid "API Username:"
+msgstr "API Username:"
+
+# Options page: API password field
+msgid "API Password:"
+msgstr "API Password:"

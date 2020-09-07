@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
 "only\n"
 "POT-Creation-Date: 2020-08-24T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-28 10:39+0200\n"
+"PO-Revision-Date: 2020-09-07 13:23+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -45,14 +45,12 @@ msgstr "Message to display on restricted pages (to guests)"
 msgid "[Members Only] You need to verify your membership to access this page."
 msgstr "[Members Only] You need to verify your membership to access this page."
 
-#| msgid "Pages & posts that should be restricted to members only"
 msgid "Page that should be restricted to members"
 msgstr "Page that should be restricted to members"
 
 msgid "Add a new page that should be restricted to verified members only."
 msgstr "Add a new page that should be restricted to verified members only."
 
-#| msgid "Pages & posts that should be restricted to members only"
 msgid "Page that should be unrestricted and made public"
 msgstr "Page that should be unrestricted and made public"
 
@@ -74,6 +72,22 @@ msgstr "Restricted pages &mdash; Remove restricted page"
 # Options page: Description of the "restricted access message" customizable option.
 msgid "Options related to restricted pages."
 msgstr "Options related to restricted pages."
+
+# Options page: API credentials description
+msgid ""
+"API credentials used to communicate with the Zubarus API. Required to use "
+"phone verification via Zubarus."
+msgstr ""
+"API credentials used to communicate with the Zubarus API. Required to use "
+"phone verification via Zubarus."
+
+# Options page: API username field
+msgid "API Username:"
+msgstr "API Username:"
+
+# Options page: API password field
+msgid "API Password:"
+msgstr "API Password:"
 
 #~ msgid "Pages & posts that are already restricted to members"
 #~ msgstr "Pages & posts that are already restricted to members"

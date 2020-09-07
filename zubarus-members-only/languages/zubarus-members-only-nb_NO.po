@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
 "only\n"
 "POT-Creation-Date: 2020-08-24T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-08-28 10:39+0200\n"
+"PO-Revision-Date: 2020-09-07 13:55+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -74,6 +74,22 @@ msgstr "Begrensede sider &mdash; Fjern en begrenset side"
 # Options page: Description of the "restricted access message" customizable option.
 msgid "Options related to restricted pages."
 msgstr "Innstillinger relatert til begrensede sider."
+
+# Options page: API credentials description
+msgid ""
+"API credentials used to communicate with the Zubarus API. Required to use "
+"phone verification via Zubarus."
+msgstr ""
+"Innloggingsinformasjon brukt for å kommunisere med Zubarus sitt API. "
+"Nødvendig for å støtte telefonverifisering via Zubarus."
+
+# Options page: API username field
+msgid "API Username:"
+msgstr "API Brukernavn:"
+
+# Options page: API password field
+msgid "API Password:"
+msgstr "API Passord:"
 
 #~ msgid "Pages & posts that are already restricted to members"
 #~ msgstr "Sider som allerede er begrenset til medlemmer"

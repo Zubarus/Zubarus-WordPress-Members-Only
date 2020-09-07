@@ -58,11 +58,11 @@ class ZubarusApiHandler
         $this->apiPassword = $apiPassword;
 
         if ($getToken) {
-            $token = $this->getToken();
-
-            if ($token !== false) {
-                error_log($token);
-            }
+            /**
+             * The function will check if a token is cached
+             * and generate one if necessary.
+             */
+            $this->getToken();
         }
     }
 
@@ -330,21 +330,13 @@ class ZubarusApiHandler
         $body = ['mobilePhone' => $phoneNumber];
         $result = $this->post('/verify-mobile-phone', $body);
 
-        error_log(print_r($result, true));
-
-        if ($result['success'] === false) {
-            /**
-             * TODO: Return proper errors (Exception?)
-             */
-            return [];
-        }
-
         /**
-         * Return response that contains the keys:
+         * On success, the `data` field should contain another `data` array
+         * with the following fields:
          * - `mobilePhone`
          * - `pin`
          */
-        return $result['data']['data'];
+        return $result;
     }
 
     /**
@@ -371,19 +363,12 @@ class ZubarusApiHandler
 
         $body = ['mobilePhone' => $phoneNumber, 'pin' => $pin];
         $result = $this->post('/verify-pin', $body);
-        error_log(print_r($result, true));
-
-        if ($result['success'] === false) {
-            /**
-             * TODO: Return proper errors (Exception?)
-             */
-            return [];
-        }
 
         /**
-         * Return response that contains the keys:
+         * On success, the `data` field should contain another `data` array
+         * with the following fields:
          * - `status`
          */
-        return $result['data']['data'];
+        return $result;
     }
 }

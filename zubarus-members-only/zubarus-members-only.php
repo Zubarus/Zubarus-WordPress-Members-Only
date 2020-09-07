@@ -38,13 +38,16 @@ function zub_debug_check_restrict()
     }
 
     $phone = '47634677';
-    $api = new ZubarusApiHandler('api@abborlaget.no', 'zub123');
-
     if (empty($_GET['zub_pin'])) {
-        print_r($api->verifyPhoneNumber($phone));
+        zub_verify_phone($phone);
     }
     else {
-        print_r($api->verifyPin($phone, $_GET['zub_pin']));
+        if (zub_verify_pin($phone, $_GET['zub_pin'])) {
+            echo '<p style="color: green;">Hooray!</p>';
+        }
+        else {
+            echo '<p style="color: red;">Invalid pin!</p>';
+        }
     }
 }
 
