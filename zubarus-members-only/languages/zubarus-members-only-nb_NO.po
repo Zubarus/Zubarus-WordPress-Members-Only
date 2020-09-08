@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/zubarus-members-"
 "only\n"
 "POT-Creation-Date: 2020-08-24T08:00:53+00:00\n"
-"PO-Revision-Date: 2020-09-07 13:55+0200\n"
+"PO-Revision-Date: 2020-09-08 10:41+0200\n"
 "Last-Translator: Alex Thomassen <alex@thomassen.sh>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -90,6 +90,18 @@ msgstr "API Brukernavn:"
 # Options page: API password field
 msgid "API Password:"
 msgstr "API Passord:"
+
+# Phone Number Form: "Phone Number"
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+# Pin Form: "Verify Pin"
+msgid "Verify Pin"
+msgstr "Verifiser pin (SMS)"
+
+# Pin form: "SMS sent to $phone"
+msgid "SMS with pin has been sent to phone number: %s"
+msgstr "SMS med pin har blitt sendt til telefonnummer: %s"
 
 #~ msgid "Pages & posts that are already restricted to members"
 #~ msgstr "Sider som allerede er begrenset til medlemmer"

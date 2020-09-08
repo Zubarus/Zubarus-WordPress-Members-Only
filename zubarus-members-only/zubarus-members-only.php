@@ -23,6 +23,7 @@ require __ZUBINC . '/ZubarusSessionHandler.php';
 require __ZUBINC . '/ZubarusMemberPageHandler.php';
 require __ZUBINC . '/ZubarusOptionsPage.php';
 require __ZUBINC . '/ZubarusApiHandler.php';
+require __ZUBINC . '/ZubarusReplacements.php';
 
 /**
  * Debugging-only
@@ -51,7 +52,7 @@ function zub_debug_check_restrict()
     }
 }
 
-add_action('init', 'zub_debug_check_restrict', 1000);
+add_action('init', 'zub_debug_check_restrict', 1005);
 
 /**
  * Checks if the current visitor has verified their phone number
@@ -106,6 +107,51 @@ function zub_replace_text($input)
 
     if (!zub_can_see_post()) {
         $restricted = zub_get_option('pages_no_access');
+
+        /**
+         * Add phone number verify form
+         */
+        $phoneForm = zub_form_text_verify_phone();
+
+        /**
+         * Phone number has already been submitted and SMS should have been sent
+         * so we display the "Verify pin" form instead.
+         *
+         * See `ZubarusSessionHandler` for the phone number/pin checking behavior.
+         *
+         * TODO: Checking
+         */
+        $smsSessionName = zub_phone_sms_sent_name();
+        $smsAttempt = isset($_SESSION[$smsSessionName]);
+
+        if ($smsAttempt) {
+            $smsSent = $_SESSION[$smsSessionName];
+
+            /**
+             * SMS was successfully sent so we
+             * display the verify pin form.
+             */
+            if ($smsSent) {
+                $phoneNumber = $_POST['zubarus_phone_number'];
+
+                /**
+                 * Translators:
+                 * - '%s' is the user's phone number.
+                 */
+                $pinTranslation = sprintf(__('SMS with pin has been sent to phone number: %s', 'zubarus-members-only'), esc_html($phoneNumber));
+                $phoneForm = sprintf('<p><strong>%s</strong></p>', $pinTranslation);
+                $phoneForm .= zub_form_text_verify_pin();
+            }
+            /**
+             * SMS was attempted, but did not succeed.
+             */
+            else {
+                $phoneForm = sprintf('<p><strong>%s</strong></p>%s', __('Unable to send SMS to the specified phone number. Make sure you typed the phone number correctly or try again later.', 'zubarus-members-only'), $phoneForm);
+            }
+        }
+
+        $restricted = str_replace('{verify_phone_form}', $phoneForm, $restricted);
+
         return $restricted;
     }
 

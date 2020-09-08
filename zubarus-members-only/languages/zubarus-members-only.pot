@@ -80,3 +80,15 @@ msgstr "API Username:"
 # Options page: API password field
 msgid "API Password:"
 msgstr "API Password:"
+
+# Phone Number Form: "Phone Number"
+msgid "Phone number"
+msgstr "Phone number"
+
+# Pin Form: "Verify Pin"
+msgid "Verify Pin"
+msgstr "Verify Pin (SMS)"
+
+# Pin form: "SMS sent to $phone"
+msgid "SMS with pin has been sent to phone number: %s"
+msgstr "SMS with pin has been sent to phone number: %s"

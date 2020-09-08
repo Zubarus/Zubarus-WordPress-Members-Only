@@ -65,13 +65,14 @@ function zub_del_restricted_page($postId)
  */
 function zub_phone_cache_key()
 {
-    $sessionName = 'zubarus_phone_pin_id';
+    $sessionName = 'zubarus_phone_pin_cache_id';
 
     /**
      * Return the session value if it exists.
      */
-    if (!empty($_SESSION[$sessionName])) {
-        return $_SESSION[$sessionName];
+    if (isset($_SESSION[$sessionName])) {
+        $sessionId = $_SESSION[$sessionName];
+        return $sessionId;
     }
 
     /**
