@@ -32,28 +32,64 @@ By default the following text is specified:
 At the bottom there's a `{verify_phone_form}`, which will be replaced with a form for first submitting your phone number (which requests an SMS via the Zubarus API) and second an entry for entering the pin from the SMS.  
 See screenshots for an example of how it would look like in action.
 
-### Screenshots
+## Screenshots
 
-#### 1. Verifying phone number
+### 1. Verifying phone number
 
 This form is shown to "guests" (users with an expired session or not logged into Wordpress).
 
 ![Screenshot of form for submitting phone number](../screenshots/zubarus-members-only/1_VerifyPhone.png)
 
-#### 2. Pin verification
+### 2. Pin verification
 
 Once a valid phone number is submitted and the Zubarus API says the SMS has been sent, the following page is displayed:
 
 ![Screenshot of form for submitting verification pin](../screenshots/zubarus-members-only/2_VerifyPin.png)
 
-#### 3. Member has access to post/page
+### 3. Member has access to post/page
 
 If the pin verification succeeds, the content of the post/page is shown as normal to the member.
 
 ![Screenshot of sample post](../screenshots/zubarus-members-only/3_AfterMemberVerified.png)
 
-#### 4. Error: Could not send SMS
+### 4. Error: Could not send SMS
 
 This error message is only displayed if the phone number was invalid, or the Zubarus API reported that a verification SMS could not be sent.
 
 ![Screenshot of SMS error](../screenshots/zubarus-members-only/4_CouldNotSendSMS.png)
+
+### 5. Plugin options: How to access plugin options via the Wordpress admin dashboard
+
+You can access the plugin options for the "Zubarus - Members Only" plugin via the "Settings" entry on the left sidebar.
+
+![Screenshot of the menu option in the Wordpress dashboard](../screenshots/zubarus-members-only/5_WordpressAdminOptions.png)
+
+### 6. Plugin options: Short description of each option on the page
+
+The options page holds all the relevant options for the plugin.
+
+1. Lists all "public" Wordpress posts/pages that can be restricted.
+2. Lists all "private" Wordpress posts/pages that you can unrestrict and make available for guests.
+3. Placeholder text for guests.
+4. Zubarus API credentials (required for SMS verification).
+
+#1 and #2 are described in more detail in screenshot #7.
+
+![Screenshot of the plugin options page](../screenshots/zubarus-members-only/6_WordpressAdminOptionsPage.png)
+
+### 7. Options: Adding restricted pages
+
+There are 4 different post types that are listed under "Add restricted page":
+- Scheduled
+- Pending Review
+- Draft
+- Published
+
+The format of each entry in the dropdown is as follows: `Title [Type/Status]`  
+Only posts that are **not already restricted to members-only** are listed in the first dropdown menu.
+
+Posts & pages that are already restricted will be listed in the second dropdown ("Remove restricted page").  
+Keep in mind that removing a restricted page only means that it will be available publically (if it's "Published").  
+It will **not be deleted** from Wordpress.
+
+![Screenshot of example posts and types](../screenshots/zubarus-members-only/7_AddPagePostTypes.png)
