@@ -4,8 +4,8 @@ The Zubarus - Members Only plugin for Wordpress allows you to restrict pages/pos
 
 Guests that have not verified their membership will only see a placeholder text, which can be edited via the Wordpress dashboard.
 
-**Important note**: Currently only the _content_ of the page is replaced with the placeholder text. The **title of the page** and the **header image** are not left as-is and will be displayed as normal to anyone (including guests).  
-Restricted pages are also shown as norml to users that are logged into Wordpress normally and have the permissions to edit any posts or pages (editors, administrators etc.).
+**Important note**: Currently only the _content_ of the page is replaced with the placeholder text. The **title of the page** and the **header image** are left as-is and will be displayed as normal to anyone (including guests).  
+Restricted pages are also shown as normal to users that are logged into Wordpress normally and have the permissions to edit any posts or pages (editors, administrators etc.).
 
 ## Requirements
 
@@ -17,3 +17,43 @@ Restricted pages are also shown as norml to users that are logged into Wordpress
 Currently the plugin supports English and Norwegian (bokmål).  
 Please note that the translations only affect the Wordpress dashboard / control panel and not the public-facing pages.  
 For instance; The "Members Only" placeholder text is the same for all languages, so write somnething that covers the majority of your userbase.
+
+## Placeholder text
+
+The placeholder text allows you to specify what should be displayed to "guests" (non-members) of your Wordpress website.  
+By default the following text is specified:
+
+```
+[Members Only] You need to verify your membership to access this page.
+
+{verify_phone_form}
+```
+
+At the bottom there's a `{verify_phone_form}`, which will be replaced with a form for first submitting your phone number (which requests an SMS via the Zubarus API) and second an entry for entering the pin from the SMS.  
+See screenshots for an example of how it would look like in action.
+
+### Screenshots
+
+#### 1. Verifying phone number
+
+This form is shown to "guests" (users with an expired session or not logged into Wordpress).
+
+![Screenshot of form for submitting phone number](../screenshots/zubarus-members-only/1_VerifyPhone.png)
+
+#### 2. Pin verification
+
+Once a valid phone number is submitted and the Zubarus API says the SMS has been sent, the following page is displayed:
+
+![Screenshot of form for submitting verification pin](../screenshots/zubarus-members-only/2_VerifyPin.png)
+
+#### 3. Member has access to post/page
+
+If the pin verification succeeds, the content of the post/page is shown as normal to the member.
+
+![Screenshot of sample post](../screenshots/zubarus-members-only/3_AfterMemberVerified.png)
+
+#### 4. Error: Could not send SMS
+
+This error message is only displayed if the phone number was invalid, or the Zubarus API reported that a verification SMS could not be sent.
+
+![Screenshot of SMS error](../screenshots/zubarus-members-only/4_CouldNotSendSMS.png)

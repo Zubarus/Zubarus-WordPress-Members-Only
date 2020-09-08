@@ -32,7 +32,7 @@ class ZubarusOptions
             /**
              * Translation is handled via getDefaultOptions().
              */
-            'default' => '[Members Only] You need to verify your membership to access this page.',
+            'default' => "[Members Only] You need to verify your membership to access this page.\n\n{verify_phone_form}",
         ],
         'api_username' => [
             'default' => null,

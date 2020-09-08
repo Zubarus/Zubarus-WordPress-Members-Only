@@ -109,7 +109,7 @@ function zub_check_phone_number_post()
 
     $phoneNumber = $_POST['zubarus_phone_number'];
     $phoneResult = zub_verify_phone($phoneNumber);
-    $_SESSION[zub_phone_sms_sent_name()] = $phoneResult['success'];
+    $_SESSION[zub_phone_sms_sent_name()] = $phoneResult;
 }
 add_action('init', 'zub_check_phone_number_post', 1000);
 

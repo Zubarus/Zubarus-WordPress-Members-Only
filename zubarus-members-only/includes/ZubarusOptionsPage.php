@@ -14,15 +14,6 @@ function zub_render_options_page()
     <h2><?php _e('Zubarus - Members Only', 'zubarus-members-only'); ?></h2>
     <form action="options.php" method="post">
         <?php
-        settings_fields($optionNames['pages_no_access']);
-        do_settings_sections('zubarus_members_only_text');
-        ?>
-        <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Save'); ?>" />
-    </form>
-
-    <hr style="margin-top: 2em;" />
-    <form action="options.php" method="post">
-        <?php
         settings_fields($optionNames['pages']);
         do_settings_sections('zubarus_members_only_add_restricted_page');
         ?>
@@ -36,6 +27,15 @@ function zub_render_options_page()
         do_settings_sections('zubarus_members_only_del_restricted_page');
         ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Remove'); ?>" />
+    </form>
+
+    <hr style="margin-top: 2em;">
+    <form action="options.php" method="post">
+        <?php
+        settings_fields($optionNames['pages_no_access']);
+        do_settings_sections('zubarus_members_only_text');
+        ?>
+        <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e('Save'); ?>" />
     </form>
 
     <hr style="margin-top: 2em;" />

@@ -125,14 +125,15 @@ function zub_replace_text($input)
         $smsAttempt = isset($_SESSION[$smsSessionName]);
 
         if ($smsAttempt) {
-            $smsSent = $_SESSION[$smsSessionName];
+            $smsResult = $_SESSION[$smsSessionName];
+            $smsSent = $smsResult['success'];
 
             /**
              * SMS was successfully sent so we
              * display the verify pin form.
              */
             if ($smsSent) {
-                $phoneNumber = $_POST['zubarus_phone_number'];
+                $phoneNumber = $smsResult['phone'] ?? '';
 
                 /**
                  * Translators:
@@ -150,6 +151,9 @@ function zub_replace_text($input)
             }
         }
 
+        /**
+         * Replace the variable with the resulting form
+         */
         $restricted = str_replace('{verify_phone_form}', $phoneForm, $restricted);
 
         return $restricted;

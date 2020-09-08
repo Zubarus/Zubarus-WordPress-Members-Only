@@ -105,7 +105,7 @@ function zub_verify_phone($phone)
     $apiUser = zub_get_option('api_username');
     $apiPass = zub_get_option('api_password');
 
-    $result = ['success' => false];
+    $result = ['success' => false, 'phone' => $phone];
     if (empty($apiUser) || empty($apiPass)) {
         $result['error'] = 'API Username/Password not specified';
         return $result;
