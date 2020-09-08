@@ -42,7 +42,7 @@ function zub_debug_check_restrict()
         zub_verify_phone($phone);
     }
     else {
-        if (zub_verify_pin($phone, $_GET['zub_pin'])) {
+        if (zub_verify_pin($_GET['zub_pin'])) {
             echo '<p style="color: green;">Hooray!</p>';
         }
         else {

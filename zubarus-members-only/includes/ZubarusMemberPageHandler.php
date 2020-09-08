@@ -53,14 +53,38 @@ function zub_del_restricted_page($postId)
 }
 
 /**
- * Returns a "consistent" key based on phone number
- * that can be used with `transient` functions.
+ * Returns a "consistent" key stored in the PHP session
+ * that can be used with `transient` functions for the
+ * phone/pin verification.
+ *
+ * "Consistent" means that the key is stored in the session of the user
+ * and returned if it exists.
+ * If it does not exist a
  *
  * @return string
  */
-function zub_phone_cache_key($phone)
+function zub_phone_cache_key()
 {
-    return 'zubarus_member_phone_pin_' . sha1($phone);
+    $sessionName = 'zubarus_phone_pin_id';
+
+    /**
+     * Return the session value if it exists.
+     */
+    if (!empty($_SESSION[$sessionName])) {
+        return $_SESSION[$sessionName];
+    }
+
+    /**
+     * Generate a 'random' ID.
+     * We don't really need this to be super secure
+     * but we definitely need it to be unique.
+     *
+     * `random_bytes(16)` combined with `bin2hex()` should generate
+     * a 32-character long ID that is unique (at least for this usecase).
+     */
+    $newId = bin2hex(random_bytes(16));
+    $_SESSION[$sessionName] = $newId;
+    return $newId;
 }
 
 /**
@@ -117,7 +141,7 @@ function zub_verify_phone($phone)
      * so we cache them for the same length.
      */
     $pin = $data['pin'];
-    set_transient(zub_phone_cache_key($phone), $pin, 600);
+    set_transient(zub_phone_cache_key(), $pin, 600);
 
     $result['pin'] = $pin;
     $result['success'] = true;
@@ -135,14 +159,13 @@ function zub_verify_phone($phone)
  * This function assumes that `zub_verify_phone()`
  * has been used first, since it sends the SMS and caches the pin.
  *
- * @param string $phone
  * @param string $pin
  * @param bool   $deleteCacheOnSuccess Delete the cached pin if the specified pin is valid AND matches.
  * @return bool `true` if pin exists and matches the input value, `false` if not.
  */
-function zub_verify_pin($phone, $pin, $deleteCacheOnSuccess = true)
+function zub_verify_pin($pin, $deleteCacheOnSuccess = true)
 {
-    $cacheKey = zub_phone_cache_key($phone);
+    $cacheKey = zub_phone_cache_key();
     $cachedPin = get_transient($cacheKey);
 
     /**
