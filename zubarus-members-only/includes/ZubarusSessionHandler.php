@@ -38,10 +38,12 @@ function zub_check_if_valid_session()
 
     /**
      * If the session is in the future and the member is currently
-     * navigating the page, we can extend it so it lasts one hour from $currentTime.
+     * navigating the page, we can extend it so it lasts $currentTime + $inactivityLimit.
+     *
+     * Default: 1 hour (3600 seconds)
      *
      * This will allow the member to navigate pages actively practically forever,
-     * but once they stop for one hour or more, they will have to re-authenticate.
+     * but once they stop for $inactivityLimit or more, they will have to re-authenticate.
      *
      * * Please note that this is not entirely accurate if the
      * * PHP configuration on the system has a shorter session lifetime.
@@ -62,7 +64,7 @@ function zub_check_if_valid_session()
 }
 
 /**
- * Start sessions
+ * Start sessions if they haven't already been started.
  */
 function zub_register_session()
 {
@@ -117,10 +119,10 @@ function zub_check_pin_verify_post()
     unset($_SESSION[zub_phone_sms_sent_name()]);
 
     /**
-     * Make session valid for 1 hour.
+     * Make session valid up until the inactivity limit (default 1 hour).
      *
      * The function `zub_check_if_valid_session()` will extend
-     * the session for up to an hour on each page load
+     * the session for up to $inactivityLimit (seconds) on each page load
      * if the current session is still valid.
      */
     $sessionName = zub_member_session_name();

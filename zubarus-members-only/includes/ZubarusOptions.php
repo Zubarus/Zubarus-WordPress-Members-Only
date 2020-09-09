@@ -25,16 +25,26 @@ class ZubarusOptions
      * @var array
      */
     private static $defaultOptions = [
+        /**
+         * Restricted pages.
+         */
         'pages' => [
             // Post/page IDs
             'default' => [],
         ],
+        /**
+         * Placeholder message for unverified users (guests).
+         */
         'pages_no_access' => [
             /**
              * Translation is handled via getDefaultOptions().
              */
             'default' => "[Members Only] You need to verify your membership to access this page.\n\n{verify_phone_form}",
         ],
+        /**
+         * Zubarus API credentials are required for
+         * the organization to send SMS through Zubarus.
+         */
         'api_username' => [
             'default' => null,
         ],
@@ -43,7 +53,9 @@ class ZubarusOptions
         ],
         /**
          * How long a user can be inactive before the
-         * session is invalidated.
+         * session is invalidated (in seconds).
+         *
+         * Default is 1 hour = 3600 seconds
          *
          * TODO: Add section to options page for this setting.
          */
