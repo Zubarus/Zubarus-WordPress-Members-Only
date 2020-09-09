@@ -122,6 +122,6 @@ function zub_check_pin_verify_post()
      * if the current session is still valid.
      */
     $sessionName = zub_member_session_name();
-    $_SESSION[$sessionName] = time() . 3600;
+    $_SESSION[$sessionName] = time() + 3600;
 }
 add_action('init', 'zub_check_pin_verify_post', 1000);
