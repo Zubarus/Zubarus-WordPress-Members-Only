@@ -5,30 +5,6 @@ if (!defined('WPINC')) {
 }
 
 /**
- * DEBUGGING
- * Testing sessions.
- */
-function zub_check_debug_session()
-{
-    if (!defined('WP_DEBUG') || WP_DEBUG !== true) {
-        return;
-    }
-
-    if (empty($_GET['zub_set_session'])) {
-        return;
-    }
-
-    /**
-     * Set short session time and set another session
-     * variable for debugging.
-     */
-    if (!isset($_SESSION['zubarus_member'])) {
-        $_SESSION['zubarus_member'] = time() + 30;
-        $_SESSION['zubarus_member_debug'] = true;
-    }
-}
-
-/**
  * Returns the name of the "zubarus_member" (authenticated)
  * session variable for consistency's sake.
  *
@@ -92,7 +68,6 @@ function zub_register_session()
         session_start();
     }
 
-    zub_check_debug_session();
     zub_check_if_valid_session();
 }
 

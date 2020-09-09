@@ -26,35 +26,6 @@ require __ZUBINC . '/ZubarusApiHandler.php';
 require __ZUBINC . '/ZubarusReplacements.php';
 
 /**
- * Debugging-only
- */
-function zub_debug_check_restrict()
-{
-    if (!defined('WP_DEBUG') || WP_DEBUG !== true || !current_user_can('edit_posts')) {
-        return;
-    }
-
-    if (empty($_GET['zub_phone'])) {
-        return;
-    }
-
-    $phone = '47634677';
-    if (empty($_GET['zub_pin'])) {
-        zub_verify_phone($phone);
-    }
-    else {
-        if (zub_verify_pin($_GET['zub_pin'])) {
-            echo '<p style="color: green;">Hooray!</p>';
-        }
-        else {
-            echo '<p style="color: red;">Invalid pin!</p>';
-        }
-    }
-}
-
-add_action('init', 'zub_debug_check_restrict', 1005);
-
-/**
  * Checks if the current visitor has verified their phone number
  * or they're a logged in user with Wordpress-editor access.
  *
