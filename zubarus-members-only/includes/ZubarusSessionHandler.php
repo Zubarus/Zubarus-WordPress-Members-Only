@@ -48,8 +48,10 @@ function zub_check_if_valid_session()
      *
      * TODO: Allow admins to control this by themselves (options API).
      */
-    if ($_SESSION[$sessionName] > time()) {
-        $_SESSION[$sessionName] = time() + 3600;
+    $inactivityLimit = zub_get_option('session_inactivity');
+    $currentTime = time();
+    if ($_SESSION[$sessionName] > $currentTime) {
+        $_SESSION[$sessionName] = $currentTime + $inactivityLimit;
         return;
     }
 
@@ -122,6 +124,7 @@ function zub_check_pin_verify_post()
      * if the current session is still valid.
      */
     $sessionName = zub_member_session_name();
-    $_SESSION[$sessionName] = time() + 3600;
+    $inactivityLimit = zub_get_option('session_inactivity');
+    $_SESSION[$sessionName] = time() + $inactivityLimit;
 }
 add_action('init', 'zub_check_pin_verify_post', 1000);

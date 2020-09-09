@@ -16,6 +16,7 @@ class ZubarusOptions
         'pages_no_access' => 'zubarus_no_access',
         'api_username' => 'zubarus_api_username',
         'api_password' => 'zubarus_api_password',
+        'session_inactivity' => 'zubarus_session_inactivity_limit',
     ];
 
     /**
@@ -39,6 +40,15 @@ class ZubarusOptions
         ],
         'api_password' => [
             'default' => null,
+        ],
+        /**
+         * How long a user can be inactive before the
+         * session is invalidated.
+         *
+         * TODO: Add section to options page for this setting.
+         */
+        'session_inactivity' => [
+            'default' => 3600,
         ],
     ];
 
