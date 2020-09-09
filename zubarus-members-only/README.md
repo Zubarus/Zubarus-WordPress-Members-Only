@@ -73,7 +73,7 @@ The options page holds all the relevant options for the plugin.
 3. Placeholder text for guests.
 4. Zubarus API credentials (required for SMS verification).
 
-#1 and #2 are described in more detail in screenshot #7.
+Points 1 and 2 are described in more detail in [screenshot #7](#7-options-adding-restricted-pages).
 
 ![Screenshot of the plugin options page](../screenshots/zubarus-members-only/6_WordpressAdminOptionsPage.png)
 
