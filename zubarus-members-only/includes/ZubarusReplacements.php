@@ -5,10 +5,10 @@ if (!defined('WPINC')) {
 }
 
 /**
- * Returns HTML string of form to use when verifying
- * phone number / PIN.
+ * Returns HTML string of form to use when submitting
+ * phone number (so they can receive a pin).
  *
- * Used for replacing `{form}` inside
+ * Used for replacing `{verify_phone_form}` inside
  *
  * @return string
  */
@@ -29,6 +29,14 @@ FORM_HTML;
     return $html;
 }
 
+/**
+ * Returns HTML string of form to use when verifying
+ * the pin received via SMS.
+ *
+ * Used for replacing `{verify_phone_form}`
+ *
+ * @return string
+ */
 function zub_form_text_verify_pin()
 {
     $html = <<<FORM_HTML

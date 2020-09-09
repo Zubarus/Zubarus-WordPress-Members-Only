@@ -92,3 +92,7 @@ msgstr "Verify Pin (SMS)"
 # Pin form: "SMS sent to $phone"
 msgid "SMS with pin has been sent to phone number: %s"
 msgstr "SMS with pin has been sent to phone number: %s"
+
+# Pin form: "Pin is only valid for 10 minutes"
+msgid "Keep in mind that the verification pin is only valid for 10 minutes."
+msgstr "Keep in mind that the verification pin is only valid for 10 minutes."

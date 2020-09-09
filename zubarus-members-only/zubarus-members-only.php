@@ -140,7 +140,8 @@ function zub_replace_text($input)
                  * - '%s' is the user's phone number.
                  */
                 $pinTranslation = sprintf(__('SMS with pin has been sent to phone number: %s', 'zubarus-members-only'), esc_html($phoneNumber));
-                $phoneForm = sprintf('<p><strong>%s</strong></p>', $pinTranslation);
+                $smsValidTranslation = __('Keep in mind that the verification pin is only valid for 10 minutes.', 'zubarus-members-only');
+                $phoneForm = sprintf('<p><strong>%s</strong><br />%s</p>', $pinTranslation, $smsValidTranslation);
                 $phoneForm .= zub_form_text_verify_pin();
             }
             /**
