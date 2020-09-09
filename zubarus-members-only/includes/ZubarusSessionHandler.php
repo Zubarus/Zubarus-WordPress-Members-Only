@@ -134,13 +134,18 @@ function zub_check_pin_verify_post()
     }
 
     /**
+     * Clear the session variable for the API response
+     * as we no longer need it when the pin has been validated.
+     */
+    unset($_SESSION[zub_phone_sms_sent_name()]);
+
+    /**
      * Make session valid for 1 hour.
      *
      * The function `zub_check_if_valid_session()` will extend
      * the session for up to an hour on each page load
      * if the current session is still valid.
      */
-    unset($_SESSION[zub_phone_sms_sent_name()]);
     $sessionName = zub_member_session_name();
     $_SESSION[$sessionName] = time() . 3600;
 }
