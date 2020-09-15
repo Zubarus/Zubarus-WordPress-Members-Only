@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Zubarus - Members Only
  * Description: Restrict access to pages & posts to members registered via Zubarus.
@@ -6,8 +7,8 @@
  * Requires PHP: 7.2
  * Author: Zubarus AS
  * Author URI: https://zubarus.com/
- * License: GPL v2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * License: GPL v3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 if (!defined('WPINC')) {
