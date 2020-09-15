@@ -79,11 +79,13 @@ Points 1 and 2 are described in more detail in [screenshot #7](#7-options-adding
 
 ### 7. Options: Adding restricted pages
 
-There are 4 different post types that are listed under "Add restricted page":
+There are currently 4 different post types that are listed under "Add restricted page":
 - Scheduled
 - Pending Review
 - Draft
 - Published
+
+Currently it's not possible to extend this list with custom post types, but it's possible to add support for that.
 
 The format of each entry in the dropdown is as follows: `Title [Type/Status]`  
 Only posts that are **not already restricted to members-only** are listed in the first dropdown menu.
