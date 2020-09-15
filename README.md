@@ -85,7 +85,7 @@ There are currently 4 different post types that are listed under "Add restricted
 - Draft
 - Published
 
-Currently it's not possible to extend this list with custom post types, but it's possible to add support for that.
+The plugin currently does not support any other post types than these four, but it's possible to add more in the future if necessary.
 
 The format of each entry in the dropdown is as follows: `Title [Type/Status]`  
 Only posts that are **not already restricted to members-only** are listed in the first dropdown menu.
