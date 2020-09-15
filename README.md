@@ -34,6 +34,9 @@ See screenshots for an example of how it would look like in action.
 
 ## Screenshots
 
+Note: The phone number/pin code form (`{verify_phone_form}`) has both English and Norwegian translations.  
+That also includes the _error messages_ that are part of the form (see screenshot 4 for an example of an error message).
+
 ### 1. Verifying phone number
 
 This form is shown to "guests" (users with an expired session or not logged into Wordpress).
