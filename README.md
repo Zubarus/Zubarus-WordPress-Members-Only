@@ -11,6 +11,11 @@ Restricted pages are also shown as normal to users that are logged into Wordpres
 
 - A Wordpress site
 - Zubarus API credentials
+    - Send us an email if you don't have API credentials already or if you have any questions: [post@zubarus.com](mailto:post@zubarus.com)
+
+## License
+
+Plugin license: [GNU General Public License - Version 3](./LICENSE)
 
 ## Translations
 
