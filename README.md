@@ -9,7 +9,7 @@ Restricted pages are also shown as normal to users that are logged into Wordpres
 
 ## Installation
 
-Download the ZIP file from the [latest release](https://github.com/Zubarus/Zubarus-WordPress-Members-Only/releases/latest) and install it via your WordPress dashboard.
+Download the ZIP file from the [latest release](https://github.com/Zubarus/Zubarus-WordPress-Members-Only/releases/latest) and install it via your WordPress dashboard (see [Manual upload via WordPress dashboard](https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin)).
 
 ## Requirements
 
