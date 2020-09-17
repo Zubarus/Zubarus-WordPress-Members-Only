@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Zubarus - Members Only
  * Description: Restrict access to pages & posts to members registered via Zubarus.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Requires PHP: 7.2
  * Author: Zubarus AS
  * Author URI: https://zubarus.com/
@@ -134,8 +134,12 @@ function zub_replace_text($input)
 
     return $input;
 }
-add_filter('the_content', 'zub_replace_text');
-add_filter('the_excerpt', 'zub_replace_text');
+/**
+ * Priority 99999 should ensure that the replace function
+ * executes very late.
+ */
+add_filter('the_content', 'zub_replace_text', 99999);
+add_filter('the_excerpt', 'zub_replace_text', 99999);
 
 /**
  * Load translations
