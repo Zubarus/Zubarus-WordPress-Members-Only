@@ -40,8 +40,10 @@ msgid "Message to display on restricted pages."
 msgstr "Message to display on restricted pages (to guests)."
 
 # Default message to display to guests that a page is restricted.
-msgid "[Members Only] You need to verify your membership to access this page."
-msgstr "[Members Only] You need to verify your membership to access this page."
+msgid "[Members Only] You need to verify your membership to access this page.\n\n
+{verify_phone_form}"
+msgstr "[Members Only] You need to verify your membership to access this page.\n\n
+{verify_phone_form}"
 
 # Options page: Pages that should be restricted (lists unrestricted pages afterwards)
 msgid "Page that should be restricted to members"
