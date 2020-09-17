@@ -7,6 +7,10 @@ Guests that have not verified their membership will only see a placeholder text,
 **Important note**: Currently only the _content_ of the page is replaced with the placeholder text. The **title of the page** and the **header image** are left as-is and will be displayed as normal to anyone (including guests).  
 Restricted pages are also shown as normal to users that are logged into Wordpress normally and have the permissions to edit any posts or pages (editors, administrators etc.).
 
+## Installation
+
+Download the ZIP file from the [latest release](https://github.com/Zubarus/Zubarus-WordPress-Members-Only/releases/latest) and install it via your WordPress dashboard.
+
 ## Requirements
 
 - A Wordpress site
