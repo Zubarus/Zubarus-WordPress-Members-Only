@@ -39,7 +39,7 @@ By default the following text is specified:
 ```
 
 At the bottom there's a `{verify_phone_form}`, which will be replaced with a form for first submitting your phone number (which requests an SMS via the Zubarus API) and second an entry for entering the pin from the SMS.  
-See screenshots for an example of how it would look like in action.
+See screenshots 1 and 2 for an example of how it would look like in action.
 
 ## Screenshots
 

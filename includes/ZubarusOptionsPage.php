@@ -254,11 +254,18 @@ function zub_members_only_del_restricted_page()
     printf('<select id="zubarus_members_only_add_restricted_page" name="%s">', $options['pages']['name']);
     printf('<option>%s</option>', __('&mdash; Select &mdash;'));
 
-    $getPosts = zub_get_posts([
-        'include' => $restrictedPages,
-    ]);
+    /**
+     * Only print options if there restricted posts
+     * If this isn't specified, `include` will be empty
+     * and it lists _ALL_ WordPress posts/pages (which we don't want).
+     */
+    if (count($restrictedPages) > 0) {
+        $getPosts = zub_get_posts([
+            'include' => $restrictedPages,
+        ]);
 
-    zub_print_posts_as_options($getPosts);
+        zub_print_posts_as_options($getPosts);
+    }
 
     print('</select>');
 }
