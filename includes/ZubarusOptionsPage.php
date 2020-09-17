@@ -194,6 +194,14 @@ function zub_get_posts($override = [])
             'draft',
             'pending',
         ],
+
+        /**
+         * Make sure to include both normal WordPress posts and pages.
+         */
+        'post_type' => [
+            'post',
+            'page',
+        ],
     ];
 
     $args = array_merge($args, $override);

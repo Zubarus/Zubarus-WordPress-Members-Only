@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Zubarus - Members Only
  * Description: Restrict access to pages & posts to members registered via Zubarus.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires PHP: 7.2
  * Author: Zubarus AS
  * Author URI: https://zubarus.com/
